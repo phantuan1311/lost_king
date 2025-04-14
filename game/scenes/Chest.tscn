@@ -1,0 +1,144 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://assets/objects/Chest/Chest Open 01.png" type="Texture" id=1]
+[ext_resource path="res://assets/objects/Chest/Chest Open 03.png" type="Texture" id=2]
+[ext_resource path="res://assets/objects/Chest/Chest Open 05.png" type="Texture" id=3]
+[ext_resource path="res://assets/objects/Chest/Chest Open 04.png" type="Texture" id=4]
+[ext_resource path="res://assets/objects/Chest/Chest Open 02.png" type="Texture" id=5]
+[ext_resource path="res://assets/objects/Chest/Chest Open 06.png" type="Texture" id=6]
+[ext_resource path="res://assets/objects/Chest/Chest Open 07.png" type="Texture" id=7]
+[ext_resource path="res://assets/objects/Chest/Chest Open 09.png" type="Texture" id=8]
+[ext_resource path="res://assets/objects/Chest/Chest Open 10.png" type="Texture" id=9]
+[ext_resource path="res://assets/objects/Chest/Chest Open 08.png" type="Texture" id=10]
+[ext_resource path="res://script/Chest.gd" type="Script" id=11]
+[ext_resource path="res://assets/objects/Chest/Chest Open 06empty.png" type="Texture" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15, 12 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 31, 12 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 5 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "empty_idle"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "empty_open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 12 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 6 ) ]
+}
+
+[node name="Chest" type="KinematicBody2D"]
+script = ExtResource( 11 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 5 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 5 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/close = SubResource( 4 )
+anims/empty_idle = SubResource( 7 )
+anims/empty_open = SubResource( 8 )
+anims/idle = SubResource( 5 )
+anims/open = SubResource( 6 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

@@ -1,0 +1,182 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://assets/enemy/Pink Star/01-Idle/Idle 01.png" type="Texture" id=1]
+[ext_resource path="res://assets/enemy/Pink Star/01-Idle/Idle 06.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemy/Pink Star/01-Idle/Idle 03.png" type="Texture" id=3]
+[ext_resource path="res://assets/enemy/Pink Star/01-Idle/Idle 04.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemy/Pink Star/01-Idle/Idle 05.png" type="Texture" id=5]
+[ext_resource path="res://assets/enemy/Pink Star/01-Idle/Idle 08.png" type="Texture" id=6]
+[ext_resource path="res://assets/enemy/Pink Star/01-Idle/Idle 07.png" type="Texture" id=7]
+[ext_resource path="res://assets/enemy/Pink Star/01-Idle/Idle 02.png" type="Texture" id=8]
+[ext_resource path="res://script/PinkStar.gd" type="Script" id=9]
+[ext_resource path="res://assets/enemy/Pink Star/02-Run/Run 05.png" type="Texture" id=10]
+[ext_resource path="res://assets/enemy/Pink Star/02-Run/Run 01.png" type="Texture" id=11]
+[ext_resource path="res://assets/enemy/Pink Star/02-Run/Run 06.png" type="Texture" id=12]
+[ext_resource path="res://assets/enemy/Pink Star/02-Run/Run 02.png" type="Texture" id=13]
+[ext_resource path="res://assets/enemy/Pink Star/02-Run/Run 03.png" type="Texture" id=14]
+[ext_resource path="res://assets/enemy/Pink Star/02-Run/Run 04.png" type="Texture" id=15]
+[ext_resource path="res://assets/enemy/Pink Star/07-Attack/Attack 03.png" type="Texture" id=16]
+[ext_resource path="res://assets/enemy/Pink Star/07-Attack/Attack 02.png" type="Texture" id=17]
+[ext_resource path="res://assets/enemy/Pink Star/07-Attack/Attack 01.png" type="Texture" id=18]
+[ext_resource path="res://assets/enemy/Pink Star/07-Attack/Attack 04.png" type="Texture" id=19]
+[ext_resource path="res://assets/enemy/Pink Star/09-Dead Hit/Dead Hit 04.png" type="Texture" id=20]
+[ext_resource path="res://assets/enemy/Pink Star/09-Dead Hit/Dead Hit 01.png" type="Texture" id=21]
+[ext_resource path="res://assets/enemy/Pink Star/08-Hit/Hit 02.png" type="Texture" id=22]
+[ext_resource path="res://assets/enemy/Pink Star/09-Dead Hit/Dead Hit 02.png" type="Texture" id=23]
+[ext_resource path="res://assets/enemy/Pink Star/09-Dead Hit/Dead Hit 03.png" type="Texture" id=24]
+[ext_resource path="res://assets/enemy/Pink Star/08-Hit/Hit 01.png" type="Texture" id=25]
+[ext_resource path="res://assets/enemy/Pink Star/08-Hit/Hit 04.png" type="Texture" id=26]
+[ext_resource path="res://assets/enemy/Pink Star/08-Hit/Hit 03.png" type="Texture" id=27]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "attack"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 18 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 19 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "deadhit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 21 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 20 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 25 ), ExtResource( 22 ), ExtResource( 27 ), ExtResource( 26 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "run"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 10 ), ExtResource( 12 ) ]
+}
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 20.0
+height = 0.0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 86.5, 24 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 23.0217
+
+[node name="PinkStar" type="KinematicBody2D"]
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.6, 1.6 )
+texture = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/attack = SubResource( 7 )
+anims/deadhit = SubResource( 8 )
+anims/hit = SubResource( 9 )
+anims/idle = SubResource( 2 )
+anims/run = SubResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 2 )
+shape = SubResource( 3 )
+
+[node name="Raycast" type="Position2D" parent="."]
+
+[node name="Ground" type="RayCast2D" parent="Raycast"]
+position = Vector2( 20, 0 )
+enabled = true
+cast_to = Vector2( 0, 30 )
+
+[node name="Find_player" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Find_player"]
+position = Vector2( 86.5, 7 )
+shape = SubResource( 4 )
+
+[node name="attack" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
+shape = SubResource( 5 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="body_entered" from="Find_player" to="." method="_on_Find_player_body_entered"]
+[connection signal="body_exited" from="Find_player" to="." method="_on_Find_player_body_exited"]
+[connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
+[connection signal="body_exited" from="attack" to="." method="_on_attack_body_exited"]
